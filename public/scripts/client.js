@@ -2,13 +2,15 @@ $(document).ready(function(){
   console.log('this be workin');
   getTasks();
 
-  $('#task-submit').on('click', postTask);
+  $('#task-submit').on('click', '#task-submit', postTask);
   $('#task-list').on('click', '.delete', deleteTask);
-  $('#task-list').on('click', '.update', updateTask);
+  //$('#task-list').on('click', '.update', updateTask);
   $('#task-list').on('click', '#complete', markComplete);
 
-  function markComplete(){
-    $(this).parent().children().css("background-color", "green");
+  function markComplete(event){
+    event.preventDefault();
+    $(this).parent().css("background-color", "green");
+    console.log("changing class");
   };
 });
 
