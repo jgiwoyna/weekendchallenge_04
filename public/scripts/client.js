@@ -5,13 +5,15 @@ $(document).ready(function(){
   $('#task-submit').on('click', postTask);
   $('#task-list').on('click', '.delete', deleteTask);
   $('#task-list').on('click', '.update', updateTask);
-  $('.update').click(function(){
-    $('.done').css('background-color', 'green');
-  });
+  $('#task-list').on('click', '#complete', markComplete);
 
+  function markComplete(){
+    $(this).parent().children().css("background-color", "green");
+  };
 });
 
   function getTasks() {
+
     $.ajax({
       type: 'GET',
       url: '/tasks',
@@ -68,6 +70,7 @@ function deleteTask() {
 }
 
 function updateTask() {
+
   var id = $(this).parent().data('id');
   console.log(id);
 
@@ -95,6 +98,7 @@ function updateTask() {
 }
 
 function appendTasks(tasks) {
+
   $("#task-list").empty();
 
   for (var i = 0; i < tasks.length; i++) {
@@ -105,13 +109,13 @@ function appendTasks(tasks) {
 
     var convertedDate = task.finish_by.substr(0, 10);
 
-    $el.append('<input type="text" class="done" name="new_task" value="' + task.new_task + '" />');
+    $el.append('<input type="text" name="new_task" value="' + task.new_task + '" />');
     //$el.append('<input type="text" name="finish_by" value="' + task.finish_by + '" />');
-    var newDate = $('<input type="text" class="done" name="finish_by" />');
+    var newDate = $('<input type="text" name="finish_by" />');
     newDate.val(convertedDate)
     $el.append(newDate);
 
-    $el.append('<button class="update">Complete</button>');
+    $el.append('<button id="complete" class="update">Complete</button>');
     $el.append('<button class="delete">Delete</button>');
   }
 }
