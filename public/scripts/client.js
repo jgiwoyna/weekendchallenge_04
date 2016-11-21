@@ -1,10 +1,10 @@
 $(document).ready(function(){
   getTasks();
 
-  $('#task-submit').on('click', '#task-submit', postTask);
+  $('#task-submit').on('click', postTask);
   $('#task-list').on('click', '.delete', deleteTask);
-  //$('#task-list').on('click', '.update', updateTask);
-  $('#task-list').on('click', '#complete', markComplete);
+  $('#task-list').on('click', '.update', updateTask, markComplete);
+  // $('#task-list').on('click', '#complete', markComplete);
 
   function markComplete(event){
     event.preventDefault();
@@ -70,7 +70,7 @@ function deleteTask() {
 }
 
 function updateTask() {
-
+  console.log("workin");
   var id = $(this).parent().data('id');
   console.log(id);
 
