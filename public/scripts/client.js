@@ -1,5 +1,4 @@
 $(document).ready(function(){
-  console.log('this be workin');
   getTasks();
 
   $('#task-submit').on('click', '#task-submit', postTask);
@@ -10,7 +9,6 @@ $(document).ready(function(){
   function markComplete(event){
     event.preventDefault();
     $(this).parent().css("background-color", "green");
-    console.log("changing class");
   };
 });
 
